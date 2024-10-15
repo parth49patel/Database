@@ -1,0 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+.register-container-image{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5),
+                        rgba(0, 0, 0, 0.5)), url("images/login.png");
+}
