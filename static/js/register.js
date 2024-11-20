@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function () {
             showErrorMessage(passwordField, "Password is required.");
             isValid = false;
         } else if (!validatePassword()) {
-            showErrorMessage(passwordField, "Password must be at least 12 characters long and include at least 1 of each : uppercase letters, lowercase letters, numbers, and special characters.");
+            showErrorMessage(passwordField, "Password must be at least 12 characters long and include at least 1 of each: uppercase letters, lowercase letters, numbers, and special characters.");
             isValid = false;
         } else {
             clearErrorMessage(passwordField);
@@ -88,10 +88,38 @@ document.addEventListener("DOMContentLoaded", function () {
         return isValid;
     }
 
-    signUpButton.addEventListener("click", function (e) {
+    signUpButton.addEventListener("click", async function (e) {
         e.preventDefault();
         if (validateFields()) {
-            alert("Form submitted successfully!");
+            const userData = {
+                fname: firstNameField.value.trim(),
+                lname: lastNameField.value.trim(),
+                email: emailField.value.trim(),
+                password: passwordField.value.trim()
+            };
+            
+            //Sending data to the server to put into the database.
+            try {
+                const response = await fetch('/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(userData)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    //alert(result.message || "Registration successful!");
+                    window.location.href = 'profile.html'; // Redirect to profile page to add skills
+                } else {
+                    const error = await response.json();
+                    alert(error.error || "An error occurred during registration. Please try again.");
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Failed to register. Please try again later.");
+            }
         }
     });
 });
