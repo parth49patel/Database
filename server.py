@@ -3,38 +3,48 @@ from hashlib import sha256
 from database import Connection  # Assuming you have this module set up
 
 app = Flask(__name__)
-app.config['TEMPLATES_AUTO_RELOAD'] = True  # Auto-reload templates for development
+app.config["TEMPLATES_AUTO_RELOAD"] = True  # Auto-reload templates for development
 db = Connection()  # Database connection
 
-@app.route('/')
+
+@app.route("/")
 def index():
     # Serve the registration page
-    return render_template('login.html')
+    return render_template("login.html")
+
 
 # Route to serve the register page
-@app.route('/register')
+@app.route("/register")
 def register_page():
-    return render_template('register.html')
+    return render_template("register.html")
+
+
+# Route to serve the course finder
+@app.route("/courseFinder")
+def courseFinder_page():
+    return render_template("courseFinder.html")
+
 
 # Route to serve the login page
-@app.route('/login')
+@app.route("/login")
 def login_page():
-    return render_template('login.html')
+    return render_template("login.html")
+
 
 # Route to serve the index page
-@app.route('/index')
+@app.route("/index")
 def index_page():
-    return render_template('index.html')
+    return render_template("index.html")
 
 
-@app.route('/register', methods=['POST'])
+@app.route("/register", methods=["POST"])
 def register_user():
     try:
         data = request.json  # Expecting JSON data
-        fname = data['fname']
-        lname = data['lname']
-        email = data['email']
-        password = data['password']
+        fname = data["fname"]
+        lname = data["lname"]
+        email = data["email"]
+        password = data["password"]
 
         # Hash the password using SHA-256
         hashed_password = sha256(password.encode()).hexdigest()
@@ -46,10 +56,11 @@ def register_user():
         """
         db.execute_query(query, (email, fname, lname, hashed_password))
 
-        return jsonify({'message': 'User registered successfully'}), 201
+        return jsonify({"message": "User registered successfully"}), 201
 
     except Exception as e:
-        return jsonify({'error': str(e)}), 400
+        return jsonify({"error": str(e)}), 400
+
 
 def verify_password(email, password):
     # Hash the provided password
@@ -58,20 +69,20 @@ def verify_password(email, password):
 
     # SQL query to fetch the stored password for the given email
     query = "SELECT user_password FROM user WHERE email = %s"
-    
+
     try:
         # Execute the query
         db.execute_query(query, (email,))
-        
+
         # Fetch the result after executing the query
         result = db.cur.fetchone()  # Use fetchone() to get the first row
-        
+
         print(f"Query result: {result}")
 
         # Extract the stored password from the result (assuming result is a tuple)
         if not result:
             return False  # No matching email found
-        
+
         stored_password = result[0]  # The hashed password will be the first element
 
         # Compare the stored hashed password with the hashed input password
@@ -91,13 +102,16 @@ def login():
     print(password)
 
     if not email or not password:
-        return jsonify({"success": False, "error": "Email and password are required"}), 400
+        return (
+            jsonify({"success": False, "error": "Email and password are required"}),
+            400,
+        )
 
     if verify_password(email, password):
         return jsonify({"success": True})
     else:
         return jsonify({"success": False, "error": "Incorrect email or password"})
-    
+
 
 @app.route("/fetch_jobs", methods=["GET"])
 def fetch_jobs():
@@ -109,5 +123,18 @@ def fetch_jobs():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-if __name__ == '__main__':
-    app.run(host='127.0.0.1', port=3000, debug=True)
+
+# to fetch the courses
+@app.route("/fetch_courses", methods=["GET"])
+def fetch_courses():
+    try:
+        # Fetch course listings from the database
+        query = "SELECT course_id, course_name, instructor, cost, course_description, skill FROM course_rec"
+        courses = db.fetch_all(query)
+        return jsonify(courses)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=3000, debug=True)
