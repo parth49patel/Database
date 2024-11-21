@@ -1,20 +1,21 @@
 import pymysql
-from dotenv import load_dotenv
+
+# from dotenv import load_dotenv
 import os
 
-load_dotenv()
+# load_dotenv()
 
 # Create a connection object
 # Database connection class
 
-print(f"DB Name: {os.getenv('DB_NAME')}, User: {os.getenv('DB_USER')}")
+
 class Connection:
     def __init__(self):
         self.con = pymysql.connect(
-            database=os.getenv('DB_NAME').strip(),
-            user=os.getenv('DB_USER').strip(),
-            host=os.getenv('DB_HOST').strip(),
-            password=os.getenv('DB_PASSWORD').strip()
+            database="dbms_final_project",
+            user="root",
+            host="localhost",
+            password="141217@Ont",
         )
 
         self.cur = self.con.cursor()
