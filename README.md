@@ -33,7 +33,7 @@ Welcome to the **JobSphere** project! This platform is designed to simplify the 
    - Go to the GitHub repository: https://github.com/your-username/jobSphere
    - Click on the green **Code** button, then select **Download ZIP** or clone the repository:
      ```bash
-     git clone https://github.com/your-username/jobSphere.git
+     git clone https://github.com/parth49patel/Database.git
      ```
 
 2. **Install Dependencies**:
