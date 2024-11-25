@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 <p><strong>Skills:</strong> ${course[5]}</p> <!-- Skills -->
                 <p><strong>Description:</strong> ${course[4]}</p> <!-- Description -->
                 <p><strong>Category:</strong> ${course[6]}</p> <!-- Category -->
-                <button class="save-course-btn" data-course='${JSON.stringify(course)}'>Save</button>
+                <!--<button class="save-course-btn" data-course='${JSON.stringify(course)}'>Save</button>-->
             `;
 
             courseListContainer.appendChild(courseItem);
