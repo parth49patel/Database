@@ -54,7 +54,7 @@ Welcome to the **JobSphere** project! This platform is designed to simplify the 
    - Set up the **MySQL** database and configure it in the `database.py` file to connect the backend.
 
 5. **Create tables**:
-   - Use the SQL database.sql to create tables and views.
+   - Use `database.sql` to create tables and views.
 
 6. **Explore and Customize**:
    - Open the frontend files (`index.html`, `style.css`, etc.) in a text editor or IDE (e.g., **VS Code**) to customize or add new features.
