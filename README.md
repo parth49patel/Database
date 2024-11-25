@@ -46,14 +46,17 @@ Welcome to the **JobSphere** project! This platform is designed to simplify the 
 3. **Run the Project**:
    - Navigate to the project folder and run the Flask application:
      ```bash
-     python app.py
+     python server.py
      ```
-   - The project will be accessible at `http://localhost:5000` in your browser.
+   - The project will be accessible at `http://127.0.0.1:3000/` in your browser.
 
 4. **Database Setup**:
-   - Set up the **MySQL** or **NoSQL** database and configure it in the `config.py` file to connect the backend.
+   - Set up the **MySQL** database and configure it in the `database.py` file to connect the backend.
 
-5. **Explore and Customize**:
+5. **Create tables**:
+   - Use the SQL database.sql to create tables and views.
+
+6. **Explore and Customize**:
    - Open the frontend files (`index.html`, `style.css`, etc.) in a text editor or IDE (e.g., **VS Code**) to customize or add new features.
 
 ---
