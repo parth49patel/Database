@@ -3,7 +3,7 @@
 Welcome to the **JobSphere** project! This platform is designed to simplify the job application process by centralizing job tracking, skill management, and educational resources. It aims to streamline your job search efforts and help you manage your career progression with ease.
 
 <p align="center">
-  <img width="929" alt="JobSphere" src="https://example.com/jobSphereImage.png">
+  <img width="700" alt="JobSphere" src="JobSphere Application.png">
 </p>
 
 ## Project Overview
@@ -24,13 +24,12 @@ Welcome to the **JobSphere** project! This platform is designed to simplify the 
 - **CSS3**: For styling and layout.
 - **JavaScript**: For interactivity and dynamic features.
 - **Flask**: For backend development.
-- **MySQL or NoSQL**: For database management.
-- **OpenAI**: For personalized resume feedback.
+- **MySQL**: For database management.
 
 ## How to View the Project
 
 1. **Clone the Repository**:
-   - Go to the GitHub repository: https://github.com/your-username/jobSphere
+   - Go to the GitHub repository: https://github.com/parth49patel/Database
    - Click on the green **Code** button, then select **Download ZIP** or clone the repository:
      ```bash
      git clone https://github.com/parth49patel/Database.git
